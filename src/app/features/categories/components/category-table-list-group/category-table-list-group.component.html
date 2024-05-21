@@ -1,0 +1,29 @@
+
+<h1 style="font-size: 2rem; margin-bottom: 30px;">Categories Table</h1>
+<p><button (click)="onAdd(); $event.stopPropagation()" style="margin-left: 600px;">New</button></p>
+
+
+<table class="table table-hover table-bordered table-striped-columns">
+    <caption>List of categories</caption>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Category Id</th>
+            <th scope="col">Category Description</th>
+            <th scope="col">Actions</th> <!-- New column for actions -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categoryTable; index as i" (click)="onChangeSelect({selectedItemId: category.id.toString()})" [class.active]="initialSelectedCategoryId === category.id">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{category.name}}</td>
+            <td>{{category.id}}</td>
+            <td>{{category.description}}</td>
+            <td>
+                <button (click)="onEdit(category.id); $event.stopPropagation()">Edit</button>
+                <button (click)="onDelete(category.id); $event.stopPropagation()">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
